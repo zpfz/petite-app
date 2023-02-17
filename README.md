@@ -1,12 +1,12 @@
-<div align=center><img src="https://s2.ax1x.com/2020/02/04/1DsmTO.png" height = "100" div align=center /></div>
+<div align=center><img src="" height = "100" div align=center /></div>
 <h1 align="center">Petite App for Desktop</h1>
 <div align="center">
 
 A minimal app engine for desktop.
 
-![GitHub release (latest by date)](https://img.shields.io/github/downloads/zpfz/petite-app/latest/total?color=blue)
+![Platform](https://img.shields.io/badge/platform-windows-lightgrey)
 ![GitHub](https://img.shields.io/github/license/zpfz/petite-app)  
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/zpfz/petite-app?color=orange&display_name=release) 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/zpfz/petite-app?color=orange) 
 
 </div>
 
