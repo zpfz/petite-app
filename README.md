@@ -4,9 +4,7 @@
 
 A minimal app engine for desktop.
 
-![Platform](https://img.shields.io/badge/platform-windows-lightgrey)
-![GitHub](https://img.shields.io/github/license/zpfz/petite-app)  
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/zpfz/petite-app?color=orange) 
+![Platform](https://img.shields.io/badge/platform-windows-lightgrey) ![GitHub](https://img.shields.io/github/license/zpfz/petite-app) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/zpfz/petite-app?color=orange) 
 
 </div>
 
