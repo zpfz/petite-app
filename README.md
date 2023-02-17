@@ -1,4 +1,4 @@
-<div align=center><img src="" height = "100" div align=center /></div>
+<!-- <div align=center><img src="" height = "100" div align=center /></div> -->
 <h1 align="center">Petite App for Desktop</h1>
 <div align="center">
 
