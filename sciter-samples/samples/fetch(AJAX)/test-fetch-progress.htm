@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Test</title>
+<script type="module">
+
+import * as sys from "@sys";
+
+const terminal = document.$("terminal").terminal;
+
+function log(str)
+{
+  terminal.write("\r\n" + str);
+}
+
+function logr(str) // writes on the same line
+{
+  terminal.write("\r" + str);
+}
+
+document.on("click", "button#download", async function(_,downloadButton) {
+
+  const cancelButton = document.$("button#cancel");
+
+  try {
+
+    const url = "https://gitlab.com/sciter-engine/sciter-js-sdk/-/archive/main/sciter-js-sdk-main.zip";
+
+    log("start downloading Sciter SDK...");
+
+    const request = new Request(url);
+
+    request.progress(function(index, total) {
+      logr(`progress: bytes downloaded ${index} of total ${total || "unknown"}`);
+    });
+  
+    downloadButton.state.disabled = true; // disabling button#download to prevent 
+                                          // multiple requests
+    cancelButton.state.disabled = false;  // enabling cancel button
+
+    cancelButton.on("click.downloader", () => { 
+      request.abort(); // abort the request
+      return true;
+    });
+
+    // wait for the request completion
+    const response = await fetch(request);
+    
+    // saving received data to the file
+    const buffer = await response.arrayBuffer();
+
+    log("");
+    log("download complete with " + response.status);
+
+    const filePath = URL.toPath(__DIR__ + "sciter-js-sdk.zip");
+
+    let file = await sys.fs.open(filePath, "w+", 0o666);
+
+    await file.write(buffer);
+    await file.close();
+
+    log(filePath + " saved!");
+
+  } catch (resp) {
+    if(resp.aborted)
+       log("Aborted!");
+    else
+       log("Error:",resp.status);
+  } finally {
+    downloadButton.state.disabled = false; 
+    cancelButton.state.disabled = true;
+    cancelButton.off("click.downloader");
+  }
+});
+
+</script>
+</head>
+<body>
+  <h1>fetch (download) Sciter SDK with progress</h1>
+  <button#download>Download</button> <button#cancel disabled>Cancel</button>
+  <terminal />
+</body>
+</html>
