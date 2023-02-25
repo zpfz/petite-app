@@ -1,0 +1,203 @@
+
+html {
+  border: window-frame-width solid transparent;
+}
+
+body {
+  margin: 0;
+}
+
+html {
+  border: none;
+
+  overflow: hidden;
+
+  var(accent-color): window-accent-color;
+  var(close-color): #e15b49;
+  var(button-focus-color): rgba(49, 132, 253, 50%);
+}
+
+/* html:theme(dark) {
+  background: #111113;
+  color: #eee;
+
+  var(main-text): #eee;
+} */
+
+html:owns-focus {
+  border-color: morph(color(accent-color), opacity: 50%);
+}
+
+html > header {
+  flow: horizontal;
+  height: 34dip;
+  background: #f0f0f4;
+}
+
+html > header > picture {
+  margin-left: 20dip;
+
+  width: 18dip;
+  height: 18dip;
+
+  background-image: url("../images/CTLP.svg");
+
+  line-height: 18dip;
+  background-size: 18dip;
+  background-position: center;
+}
+
+html > header > window-caption {
+  margin: 10dip 0;
+
+  width: *;
+
+  padding-left: 8dip;
+
+/* //    line-height: window-caption-height; */
+
+  text-overflow: ellipsis;
+  text-align: left;
+  font-size: 13dip;
+  font-weight: 400;
+  color: color(main-text);
+}
+
+/* // window buttons */
+html > header > window-buttons {
+  flow: horizontal;
+
+  margin-left: 10dip;
+
+  width: max-content;
+  height: *;
+}
+
+/* // window button */
+html > header > window-buttons > window-button {
+  behavior: button;
+
+  width: 45dip;
+  height: 34dip;
+
+  border-radius: 0;
+
+  foreground-size: 12dip;
+  foreground-repeat: no-repeat;
+  foreground-position: 50% 50%;
+
+  stroke: rgb(164,164,164);
+  stroke-width: 2dip;
+
+  transition: background-color linear 100ms;
+}
+
+html > header > window-buttons > window-button:hover {
+  background: rgb(227,227,227);
+}
+
+html > header > window-buttons > window-button:tab-focus {
+  outline: 2dip solid color(button-focus-color) 0dip;
+}
+
+/* //html > header > window-buttons > window-button[role="settings"]:hover, */
+html > header > window-buttons > window-button[role="window-minimize"]:hover {
+  stroke: rgb(100,100,100);
+}
+
+/* // close button */
+html > header > window-buttons > window-button[role="window-close"] {
+  foreground-image: url(path: M0,0 L10,10 M0,10 L10,0);
+}
+
+html > header > window-buttons > window-button[role="window-close"]:hover {
+  background: color(close-color);
+  stroke: #fff;
+}
+
+/* // maximize button */
+html > header > window-buttons > window-button[role="window-maximize"] {
+  foreground-image: url(path: M0,0 h+10 v+10 h-10 v-10);
+}
+
+html[window-state="maximized"] > header > window-buttons > window-button[role="window-maximize"] {
+  foreground-image: url(path: M0,0 h+10 v+10 h-10 v-10 M2,0 v-2 h+10 v+10 h-2);
+}
+
+/* // hide window border when maximized */
+html[window-state="maximized"] {
+  border-color: transparent;
+}
+
+/* // minimize button */
+html > header > window-buttons > window-button[role="window-minimize"] {
+  foreground-image: url(path: M0,0 M0,5 H10 M10,10);
+}
+
+
+
+
+/* Panel */
+section {
+  flow:verical;
+  border-spacing: 4dip; /* inter-child spacing */
+  /* border:2dip dotted brown; */
+  height:*;
+  width:*;
+}
+
+section > div {
+  /* background: gold; */
+  width: *;
+  border-color: brown;
+}
+
+columns {
+  flow: "1 3 5 7"
+        "2 4 6 8";
+  display:block;
+  size:*;
+  /* border-spacing: 1em; */
+}
+
+.todo_row{
+  flow:horizontal;
+  border-spacing: 4dip; /* inter-child spacing */
+  /* border:2dip dotted brown; */
+  background: #f0f0f4;
+
+}
+
+.todo_row > div {
+  height: 60dip;
+  /* border-color: brown; */
+}
+
+
+.todo_add,.todo_input{
+  display:flex; 
+  flex-direction: row; 
+  align-items: center;
+  flow: horizontal;
+  margin-left: -4dip;
+}
+
+.todo_add_button{
+  font-size: 13dip;
+  padding: 6dip 20dip;
+  background-color: #1677ff;
+  border-radius: 4dip;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 0 rgb(5 145 255 / 10%);
+  transition: background-color .25s ease-in-out;
+}
+
+.todo_add_button:hover{
+  background-color: #4096ff;
+
+}
+.todo_add_button:active{
+  background-color: #0958d9;
+  
+}

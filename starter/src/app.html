@@ -1,0 +1,62 @@
+<!-- <html 
+    window-frame="transparent"
+    window-width="400dip"
+    window-height="500dip"
+    window-min-width="350dip"
+    window-min-height="400dip"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>待办清单</title>
+  <script src="./assets/js/app.js"></script>
+  <link rel="stylesheet" href="./assets/css/app.css">
+</head>
+
+<body>
+  <div class="title_bar" role="window-caption">
+    <div class="title_text">待办清单</div>
+    <div class="title_btn">
+      <icon|min title="Minimize" class="title_btn_margin title_btn_minimize"/>
+      <icon|cancel title="Cancel" class="title_btn_margin title_btn_close"/>
+    </div>
+  </div>
+</body>
+<script>
+
+</script>
+
+</html> -->
+
+<html 
+  window-frame="extended"
+  window-resizable="true"
+  window-width="400dip"
+  window-height="500dip"
+  window-min-width="350dip"
+  window-min-height="400dip"
+>
+<head>
+
+<!-- <title>待办清单</title> -->
+
+<style>
+
+@import url(./style/window.css);
+
+</style>
+
+<script type="module">
+
+document.on("ready", function () {
+});
+
+</script>
+
+</head>
+
+<include src="./components/TitleBar/TitleBar.htm"/>
+<include src="./components/Panel/Panel.htm"/>
+<!-- <body>
+</body> -->
+</html>

@@ -1,0 +1,54 @@
+
+html,body{
+  margin: 0;
+  border-radius: 7px;
+  overflow: hidden;
+  border: 1px solid red;
+  /* border: window-frame-width solid transparent; */
+  /* border-color: red; */
+  background-color: transparent;
+}
+body{
+  background-color: #eeeeee;
+}
+
+.title_bar{
+  display: flex;
+  /* align-items: center; */
+  flex-direction: row;
+  justify-content: space-between;
+  flow: horizontal;
+  border-spacing: *;
+  line-height: 1.6;
+  padding: 6px 10px;
+}
+
+.title_text{
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+.title_btn{
+  font-size: 16px;
+  color: rgb(95, 95, 95);
+}
+.title_btn_margin{
+  /* margin-right: 2px;
+  margin-left: 1px; */
+  padding: 6px;
+}
+.title_btn_minimize,.title_btn_close{
+  border-radius: 5px;
+  transition: background-color .3s ease-in-out;
+
+}
+.title_btn_minimize:hover{
+  background-color: aqua;
+}
+
+.title_btn_close:hover{
+  background-color: red;
+}
+
+
+
