@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+div {
+  font-size: 14pt;  
+  margin:1em;
+}
+
+        </style>
+        <script|module>
+
+import {TestEmb} from "embedded-styles.js";
+import {TestExt} from "external-styles.js";
+
+document.body.append(<TestEmb/>);
+document.body.append(<TestExt/>);
+
+        </script>
+    </head>
+    <body>
+    Demo of component styling 
+    </body>
+</html>

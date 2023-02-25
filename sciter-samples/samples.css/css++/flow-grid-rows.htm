@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+form {
+    flow: row(label, input select button);
+    flow-columns: max-content max-content;
+    margin: 0 *; // center aligned
+    border-spacing:1em 0.25em;
+}
+
+label { text-align:end; }
+header {background:#eee; padding:0.5em 1em; }
+
+        </style>
+    </head>
+    <body>
+
+      <form #test>
+
+         <header>Header 1</header>
+
+         <label>input 1</label> <input|text />
+         <label>select 1</label> <select><option>A</option><option>B</option></select>
+         <label>button 1</label> <button>go</button>
+
+         <header>Header 2</header>
+         <label>input 2</label> <input|text />
+         <label>select 2</label> <select><option>A</option><option>B</option></select>
+         <label>button 2</label> <button>go</button>
+
+         <header>Header 3</header>
+         <label>input 3</label> <input|text />
+         <label>select 3</label> <select><option>A</option><option>B</option></select>
+         <label>button 3</label> <button>go</button>
+
+      </form>
+
+    </body>
+</html>

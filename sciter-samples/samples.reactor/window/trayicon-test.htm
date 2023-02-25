@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+          ol#events { 
+            height:*; 
+            overflow:auto; 
+            vertical-align:bottom;
+          }
+
+        </style>
+        <script>
+
+          document.on("click", "button#set", async function(evt,button) 
+          {
+            var r = Window.this.trayIcon({
+              image: await Graphics.Image.load(__DIR__ + "app.svg"),
+              text: "I am trayIcon\ncreated at: " + new Date()
+            });
+            if( r )
+              button.state.disabled = true;
+          }); 
+
+          Window.this.on("trayiconclick", evt =>
+          { 
+            if(evt.data.buttons == 2) // right button click
+            {
+              const {screenX,screenY} = evt.data;
+              const popup = new Window({
+                 type: Window.POPUP_WINDOW,
+                 html: <PopuMenuWindow />, // Note: use of VDOM as window content
+                 x:screenX, 
+                 y:screenY,
+                 alignment: 2, // on top of x/y
+                 state: Window.WINDOW_SHOWN
+              });
+              popup.activate(true); // set focus and bring it to front
+            }
+          }); 
+
+          function revealWindow(evt){
+            evt.target.window.close(); // close popup window this menu item is in
+            Window.this.state = Window.WINDOW_SHOWN;
+          }   
+
+          function getOutOfHere(evt) {
+            evt.target.window.close(); // close popup window this menu item is in
+            // exiting the application
+            Window.this.trayIcon("remove");
+            Window.this.close(); // close this (host) window
+          }
+
+ 
+          // generates markup of small popup window that hosts menu:
+          function PopuMenuWindow(props,kids) {
+
+            function onWindowActivate(evt) {
+              if(!evt.reason)  
+                this.close(); // the window has lost the focus
+            }
+
+            return <html window-frame="solid-with-shadow"
+                         window-width="max-content"
+                         window-height="max-content"
+                         window-onactivate={onWindowActivate}>
+                    <style src={__DIR__ + "menu-window-style.css"} />
+                    <body>
+                      <menu.popup.visible>
+                        <li onClick={revealWindow}>Show window</li>
+                        <li onClick={getOutOfHere}>Exit</li>
+                      </menu>
+                    </body>
+                  </html>;
+          }
+
+        </script>
+    </head>
+    <body>
+
+       <p>This sample demonstrates creation of secondary window by using JSX.</p>
+
+       <p>To see the popup menu window RIGHT CLICK on tray icon.</p>
+
+       <button#set>Set Tray Icon</button>
+
+    </body>
+</html>

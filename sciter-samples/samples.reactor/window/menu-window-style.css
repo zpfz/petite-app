@@ -1,0 +1,17 @@
+
+html {
+  overflow:hidden;
+}
+
+body {
+  margin:0;
+  font:system;
+}
+
+menu.popup {
+  visibility:visible;
+  display:block;
+  width:max-content;
+  height:max-content;
+  border:none;
+}

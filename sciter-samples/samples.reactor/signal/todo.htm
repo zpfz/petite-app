@@ -1,0 +1,55 @@
+﻿<html>
+    <head>
+        <title>Test</title>
+        <style>
+          button.remove {
+            appearance:none;
+          }
+        </style>
+        <script>
+
+const {signal,computed,effect} = Reactor;
+
+// Observable data model, "signalized":
+const todos = signal([
+  { text: "download Sciter SDK" },
+  { text: "try signals samples" },
+]);
+
+// We'll use this for our input later
+const text = signal("");
+
+function addTodo() {
+  todos.value = [...todos.value, { text: text.value }]; // Append the list
+  text.value = ""; // Clear input value on add
+  text.valueElements[0].state.focus = true; 
+}
+
+function removeTodo(todo) {
+  todos.value = todos.value.filter(t => t !== todo);
+}
+
+function TodoList() {
+  return <section.todo>
+      <input value={text} />
+      <button onClick={addTodo}>Add</button>
+      <ul>
+        { todos.value.map(todo => (
+          <li>
+            {todo.text}{' '}
+            <button.remove onClick={() => removeTodo(todo)}>❌</button>
+          </li>
+        )) }
+      </ul>
+    </section>;
+}
+
+// Rock'n'roll
+document.body.append(<TodoList/>);
+
+        </script>
+    </head>
+    <body>
+<h2>ToDo list, "signalized" this time</h2>    
+    </body>
+</html>

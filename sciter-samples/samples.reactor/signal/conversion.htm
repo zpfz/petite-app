@@ -1,0 +1,38 @@
+﻿<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+body {font-size: 16pt;}
+
+input { width:8em; font-size:inherit;}
+
+        </style>
+        <script>
+
+const {signal,computed,effect} = Reactor;
+
+// input signals
+let celsius = signal(0);
+let fahrenheit = signal(0);
+
+// output effects:
+effect( () => {fahrenheit.value = celsius.value * 9 / 5 + 32 });
+effect( () => {celsius.value = (fahrenheit.value - 32) * 5 / 9});
+
+function TemperatureConvertor(prop,kids) {
+  // NOTE: input values here are bound with signals:
+  return <p>
+    <input|number step="1" value={celsius}/>°C ↔ 
+    <input|number step="1" value={fahrenheit}/>°F
+  </p>;
+}
+
+document.body.append(<TemperatureConvertor/>);
+
+        </script>
+    </head>
+    <body>
+      This demosntrates data binding of input values by signals and effects. Changes in either input will update other one:
+    </body>
+</html>

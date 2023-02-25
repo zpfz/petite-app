@@ -1,0 +1,14 @@
+
+@set testset {
+  :root {
+     background: #008;
+     color: #fff;
+     padding:0.5em 1em 0.5em 3em;
+     background: #036 no-repeat url(images/perfecto.png);
+     background-position: top 50% left 0.5em;
+     background-size: 2em;
+  }
+  em {
+    color: #F84;
+  }
+}

@@ -1,0 +1,100 @@
+<html>
+  <head>
+  <title></title>
+  <style>
+  
+    html { background:#EEE; }
+  
+    ul {
+      font: system;
+      behavior:expandable-list;
+      width:280px;
+      height:*;
+      padding:0;
+      overflow:hidden;
+      border:1px solid;
+      border-color:#BBB #FFF #FFF #BBB;
+    }
+    ul > li 
+    {
+      display:block;
+      padding:0;
+      margin:0;
+      min-height:24px;
+      height:1*;
+      overflow:hidden;
+      transition: height sine-in-out 400ms;
+    }
+    
+    ul > li > div.details { 
+      prototype: ItemDetails;
+      background:#FEA url(images/inner-shadow.png) expand; 
+      background-position:10 5 5 10;
+      size:*;
+      padding:10px;
+      overflow:hidden; 
+    }
+    ul > li > caption
+    {
+      font-size:12px;
+      font-weight:bold;
+      line-height:14px;
+      color:#666;
+      margin:0;
+      padding:4px 10px;
+      background-color:#DDD;
+      border-width:1px;
+      border-style:solid;
+      border-color:#FEFEFE #BBB #BBB #FEFEFE;
+      text-shadow:#FFF 1px 1px 2px, #BBB -1px -1px 2px;
+    }
+    
+    ul > li > div.details { visibility:collapse; }
+    
+    ul > li:expanded { height:100*; }
+    ul > li:animating > div.details { visibility:visible; overflow:hidden; }
+    ul > li:expanded > div.details { visibility:visible; }
+  
+  </style>
+  <script type="text/tiscript">
+
+     class ItemDetails: Element {
+        event visualstatechange (evt) {
+          debug visibility: this, evt.reason, this.isVisible;
+        }
+     } 
+
+
+  </script>
+  </head>
+<body>
+  <header>behavior:expandable-list sample</header>
+  <p>Only one list item is :expanded at a time</p>
+  <ul id="expandable">
+    <li default>
+      <caption>First</caption>
+      <div class="details" style="background-color:#FEA">
+        First details				   
+      </div>
+    </li>
+    <li>
+      <caption>Second</caption>
+      <div class="details" style="background-color:#EFA">
+        <select style="width:*; display:block;">
+          <option>Veni</option>
+          <option>Vidi</option>
+          <option>Vici</option>
+        </select>
+      </div>
+    </li>
+    <li>
+      <caption>Third</caption>
+      <div class="details" style="background-color:#AEF">
+        Third details:
+        <input type=calendar style="width:*; display:block;" />				   
+      </div>
+    </li>
+  </ul>
+
+</body>
+</html>

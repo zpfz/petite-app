@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+li {
+  behavior:details;
+}
+
+li > p {
+  visibility:none;
+  margin-left:1em;
+}
+
+li:expanded > p {
+  visibility:visible;
+}
+
+        </style>
+    </head>
+    <body>
+
+List with collapsible items:
+
+<ol>
+    <li>
+      <caption>Item A</caption>
+      <p>Item A details</p>
+    </li>
+    <li>
+      <caption>Item B</caption>
+      <p>Item B details</p>
+    </li>
+    <li>
+      <caption>Item C</caption>
+      <p>Item C details</p>
+    </li>
+</ol>
+    </body>
+</html>

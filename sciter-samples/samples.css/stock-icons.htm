@@ -1,0 +1,263 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+icon {
+    size:24px;
+    behavior:button;
+}
+
+icon:hover {
+   background:#000;
+   fill: #fff; 
+}
+
+main {
+    size:*;
+    overflow:auto;
+}
+
+
+        </style>
+        <script>
+
+document.on("click","icon", function(e,icon) {
+  const type = icon.attributes["type"];
+  document.$("form#to-copy").value = {
+    html: `<icon|${type} />`,
+    css: `url(icon:${type})`,
+  }
+});
+
+        </script>
+    </head>
+    <body>
+
+<header>
+  <p>List of Sciter built-in icons. The set of Microns icons is created by <a target="@system" href="https://www.s-ings.com/projects/microns-icon-font/">Stephen Hutchings</a>.</p>
+  <form #to-copy>
+    <label>HTML</label> <input|text(html) readonly />
+    <label>CSS</label> <input|text(css) readonly />
+  </from>
+
+</header>
+
+<main>
+    <h2>Arrows</h2> 
+
+    <icon|arrow-left title="Left Arrow" />
+    <icon|arrow-right title="Right Arrow" />
+    <icon|arrow-up title="Up Arrow" />
+    <icon|arrow-down title="Down Arrow" />
+    <icon|left title="Left" />
+    <icon|right title="Right" />
+    <icon|up title="Up" />
+    <icon|down title="Down" />
+    <icon|upload title="Upload" />
+    <icon|download title="Download" />
+    <icon|undo title="Undo" />
+    <icon|redo title="Redo" />
+    <icon|replay title="Replay" />
+    <icon|refresh title="Refresh" />
+    <icon|external title="External" />
+    <icon|internal title="Internal" />
+    <icon|caret title="Caret" />
+    <icon|caret-up title="Up Caret" />
+    <icon|caret-down title="Down Caret" />
+    <icon|scale title="Scale" />
+    <icon|scale-h title="Scale Horizontal" />
+    <icon|scale-v title="Scale Vertical" />
+    <icon|move title="Move" />
+    <icon|move-alt title="Move Alt" />
+    <icon|swap title="Swap" />
+    <icon|shuffle title="Shuffle" />
+
+    <h2>Inline</h2> 
+
+    <icon|i-left title="Left Inline" />
+    <icon|i-right title="Right Inline" />
+    <icon|i-up title="Up Inline" />
+    <icon|i-down title="Down Inline" />
+    <icon|i-tick title="Tick Inline" />
+    <icon|i-cross title="Cross Inline" />
+    <icon|i-plus title="Plus Inline" />
+    <icon|i-minus title="Minus Inline" />
+    <icon|i-equal title="Equals Inline" />
+    <icon|i-divide title="Divide Inline" />
+    <icon|i-bullet title="Bullet Inline" />
+    <icon|i-asterisk title="Asterisk Inline" />
+
+    <h2>Audio and Video</h2> 
+
+    <icon|play title="Play" />
+    <icon|pause title="Pause" />
+    <icon|prev title="Previous" />
+    <icon|next title="Next" />
+    <icon|subtitles title="Subtitles" />
+    <icon|vol-low title="Low Volume" />
+    <icon|vol-mid title="Mid Volume" />
+    <icon|vol-high title="High Volume" />
+    <icon|vol-mute title="Mute Volume" />
+    <icon|captions title="Captions" />
+    <icon|hd title="High Definition" />
+    <icon|audio-description title="Audio Description" />
+
+    <h2>Charts</h2> 
+
+    <icon|chart-line title="Line Chart" />
+    <icon|chart-bar title="Bar Chart" />
+    <icon|chart-scatter title="Scatter Plot" />
+    <icon|chart-area title="Area Chart" />
+    <icon|chart-pie title="Pie Chart" />
+
+    <h2>Time and date</h2> 
+
+    <icon|calendar title="Calendar" />
+    <icon|clock title="Clock" />
+
+    <h2>User actions</h2> 
+
+    <icon|star title="Star" />
+    <icon|heart title="Heart" />
+    <icon|flag title="Flag" />
+    <icon|bookmark title="Bookmark" />
+    <icon|chat title="Chat" />
+
+    <h2>Editorial</h2> 
+
+    <icon|edit title="Edit" />
+    <icon|delete title="Delete" />
+    <icon|plus title="Plus" />
+    <icon|minus title="Minus" />
+    <icon|show title="Show" />
+    <icon|hide title="Hide" />
+    <icon|lock title="Lock" />
+    <icon|ban title="Ban" />
+    <icon|pipette title="Pipette" />
+    <icon|cog title="Cog" />
+    <icon|link title="Link" />
+    <icon|attach title="Attach" />
+    <icon|copy title="Copy" />
+
+    <h2>Users</h2> 
+
+    <icon|user title="User" />
+    <icon|group title="Group" />
+
+    <h2>Content</h2> 
+
+    <icon|file title="File" />
+    <icon|folder title="Folder" />
+    <icon|image title="Image" />
+    <icon|video title="Video" />
+    <icon|audio title="Audio" />
+    <icon|microphone title="Microphone" />
+    <icon|video-camera title="Video Camera" />
+    <icon|print title="Print" />
+
+    <h2>Navigation</h2> 
+
+    <icon|menu title="Menu" />
+    <icon|bars title="Bars" />
+    <icon|opts-h title="Options (Horizontal)" />
+    <icon|opts-v title="Options (Vertical)" />
+    <icon|home title="Home" />
+    <icon|cancel title="Cancel" />
+    <icon|search title="Search" />
+    <icon|zoom-in title="Zoom In" />
+    <icon|zoom-out title="Zoom Out" />
+    <icon|contract title="Contract" />
+    <icon|expand title="Expand" />
+
+    <h2>Layout</h2> 
+
+    <icon|grid title="Grid" />
+    <icon|matrix title="Matrix" />
+    <icon|list title="List" />
+    <icon|landscape title="Landscape" />
+    <icon|portrait title="Portrait" />
+    <icon|panel-left title="Left Panel" />
+    <icon|panel-right title="Right Panel" />
+    <icon|min title="Minimize" />
+    <icon|max title="Maximize" />
+
+    <h2>Network</h2> 
+
+    <icon|mail title="Mail" />
+    <icon|code title="Code" />
+    <icon|cloud title="Cloud" />
+    <icon|web title="Web" />
+    <icon|wifi title="Wifi" />
+    <icon|drive title="Drive" />
+    <icon|server title="Server" />
+    <icon|rss title="RSS" />
+    <icon|share title="Share" />
+
+    <h2>Toggle</h2> 
+
+    <icon|box title="Box" />
+    <icon|box-full title="Solid Box" />
+    <icon|box-plus title="Box Plus" />
+    <icon|box-minus title="Box Minus" />
+    <icon|box-tick title="Box Tick" />
+    <icon|box-cross title="Box Cross" />
+    <icon|box-plus-o title="Box Plus" />
+    <icon|box-minus-o title="Box Minus" />
+    <icon|box-tick-o title="Box Tick" />
+    <icon|box-cross-o title="Box Cross" />
+    <icon|radio-off title="Radio Off" />
+    <icon|radio-on title="Radio On" />
+    <icon|radio-full title="Radio Filled" />
+    <icon|power title="Power" />
+
+    <h2>Status</h2> 
+
+    <icon|info title="Info" />
+    <icon|warn title="Warn" />
+    <icon|pass title="Pass" />
+    <icon|fail title="Fail" />
+    <icon|unknown title="Unknown" />
+
+    <h2>Text</h2>
+
+    <icon|text title="Text" />
+    <icon|bold title="Bold" />
+    <icon|italic title="Italic" />
+    <icon|underline title="Underline" />
+    <icon|strikeout title="Strikeout" />
+    <icon|text-size title="Text Size" />
+    <icon|text-unstyle title="Clear Styles" />
+    <icon|sub title="Subscript" />
+    <icon|sup title="Superscript" />
+    <icon|paragraph title="Paragraph" />
+    <icon|hash title="Hashtag" />
+    <icon|at title="At Sign" />
+    <icon|translate title="Translate" />
+
+    <h2>Alignment</h2>
+
+    <icon|align-left title="Align Left" />
+    <icon|align-center title="Align Center" />
+    <icon|align-right title="Align Right" />
+    <icon|justify-left title="Justify Left" />
+    <icon|justify-center title="Justify Center" />
+    <icon|justify-right title="Justify Right" />
+    <icon|indent title="Indent" />
+    <icon|outdent title="Outdent" />
+    <icon|chapters title="Chapters" />
+    <icon|columns title="Columns" />
+    <icon|sort-asc title="Sort Ascending" />
+    <icon|sort-desc title="Sort Descending" />
+
+    <h2>Layers</h2>
+
+    <icon|above title="Above" />
+    <icon|below title="Below" />
+    <icon|difference title="Difference" />
+    <icon|intersect title="Intersect" />
+    <icon|outline title="Outline" />
+    <icon|unite title="Unite" />    
+</main>    
+    </body>
+</html>

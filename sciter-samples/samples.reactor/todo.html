@@ -1,0 +1,38 @@
+<html>
+<head>
+
+<script type="module">
+  
+	class TodoList extends Element {
+		  // state variables
+	    todos = [];
+	    text = "";
+
+      render() {
+	        return <div>
+              <input|text value={this.text} />
+              <button.add>Add</button>
+              <ul>{ this.todos.map( todo => <li>{todo.text}</li> ) }</ul>
+            </div>;
+	    }
+
+      // event handlers 
+	    ["on change at input"](e,input) {
+	      this.text = input.value;
+	    }
+
+	    ["on click at button.add"]() {
+	      let todos = this.todos.concat({ text: this.text });
+	      this.componentUpdate({ todos, text: "" });
+	      this.$("input").state.focus = true;
+	    }
+	}
+
+  document.body.append(<TodoList/>);
+</script>
+</head>
+
+<body>
+</body>
+
+</html>

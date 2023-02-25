@@ -1,0 +1,53 @@
+<html>
+<head>
+        <title>Server</title>
+        <style></style>
+        <script type="module">
+    import * as sys from "@sys";
+    const bjson = new BJSON()
+    const list = document.$("div#message-list");
+    async function handleConnection(conn) {
+    console.log(`Accepted connection! ${conn.getpeername()} <-> ${conn.getsockname()}`);
+    let data;
+    while (true) {
+        try {
+          data = await conn.read();
+          if (!data) {
+              console.log('connection closed!');
+              break;
+          }
+          // deserialize BJSON.
+          bjson.unpack(data, json => {
+            conn.write(bjson.pack(json));
+            list.append(<text>Received:{JSON.stringify(json)}</text>);
+          });
+        }
+        catch (e) {
+          console.error(e);
+        }
+    }
+    }
+    (async () => {
+    var p = new sys.Pipe();
+    document.on("beforeunload", evt => p.close());
+    try {
+      p.bind('fooPipe');
+      p.listen();
+      console.log(`Listening on ${p.getsockname()}`);
+      let conn;
+      while (true) {
+          conn = await p.accept();
+          handleConnection(conn);
+          conn = undefined;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    })();
+        </script>
+</head>
+
+<body>
+  <div#message-list />
+</body>
+</html>
