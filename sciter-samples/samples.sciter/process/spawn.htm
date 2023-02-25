@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+          terminal { size:*; padding:4px; overflow:scroll-indicator;}
+        </style>
+        <script type="module">
+
+          import * as sys from '@sys';
+          import * as env from '@env';
+          import * as sciter from '@sciter';
+
+          const terminalView = document.$("terminal").terminal;
+          const red = "\x1b[31m";
+          const green = "\x1b[32m";
+          const reset = "\x1b[0m";
+
+          async function pipeReader(pipe, name) {
+            try {
+              reading: while(pipe) {
+                let text = await pipe.read(); 
+                text = sciter.decode(text);
+                terminalView.write(text);
+              }
+            } catch(e) {
+              if(e.message != "socket is not connected")
+                 //console.error(e.message);
+                 terminalView.write(red + e.message + reset);
+            }
+          }
+
+          document.on("click", "#exec", async function() {
+            var cmd = env.PLATFORM == "Windows" ? "tracert" : "traceroute";
+            try {
+              const tracert = sys.spawn([cmd,"sciter.com"], { stdout:"pipe", stderr:"pipe"} );
+              pipeReader(tracert.stdout,"stdout");
+              pipeReader(tracert.stderr,"stderr");
+              await tracert.wait();
+              terminalView.write(green + "Done!" + reset + "\r\n");
+            } catch (e) {
+              terminalView.write(red + e.message + reset);
+            }
+          });
+
+        </script>
+    </head>
+    <body>
+
+      <button #exec>Show trace route</button>
+      <terminal />
+
+    </body>
+</html>

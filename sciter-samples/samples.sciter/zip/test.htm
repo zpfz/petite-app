@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style></style>
+        <script>
+
+function ZipItemsReport() {
+  const path = __DIR__ + "test.zip";
+  const zip = Zip.openFile(path);
+
+  const items = [];
+  let   index = 0;
+  for(let zit of zip)
+    items.push(<tr><td>{++index}</td>
+                   <td>{zit.path}</td>
+                   <td>{zit.isDir?"dir": zit.data.byteLength}</td></tr>);
+  
+  return <section>
+      <header>{path}:</header>
+      <table border>
+        <thead><tr><th></th><th>path</th><th>length</th></tr></thead>
+        <tbody>{items}</tbody>
+      </table>
+      images/image.png: <img state-value={ zip.item("images/image.png").data } />
+  </section>;
+}
+
+document.body.append(<ZipItemsReport />);
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

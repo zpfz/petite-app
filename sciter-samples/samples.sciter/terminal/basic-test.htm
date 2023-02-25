@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style></style>
+        <script>
+
+document.$("terminal").terminal.write("hello world!");
+document.$("terminal").terminal.write("\r\nAgain hello world!");
+
+document.$("terminal").terminal.write("\033[1;31m This is red text \033[0m");
+
+//document.$("terminal").terminal.write("\033[31;1;4mHello\033[0m");
+
+        </script>
+    </head>
+    <body>
+
+     <terminal rows="24" columns="80" />
+
+    </body>
+</html>

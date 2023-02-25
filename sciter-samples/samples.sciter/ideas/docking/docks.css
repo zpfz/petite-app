@@ -1,0 +1,22 @@
+
+
+.dock {
+  prototype: Dock url(docks.js);
+}
+
+.dockable {
+  border:1px solid;
+  size:*;
+}
+
+.dockable.window {
+   background:gold;    
+}
+
+.dockable.window.detached {
+  aspect: DockableWindow url(docks.js);
+}
+
+.dockable caption {
+  prototype: DockCaption url(docks.js);
+}

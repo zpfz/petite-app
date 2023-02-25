@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+div.video {
+  flow:stack;
+  width:200px;
+  height:160px;
+  background:gold;
+}
+
+div.video video.generator {
+  behavior: video-generator video;
+  size: *;
+  foreground-size:contain;
+}
+
+div.video footer {
+  margin-top:*; // aligned to bottom
+  background:rgba(48,48,48,0.5);
+  flow:horizontal;
+  horizontal-align:center;
+  padding:3px;
+}
+
+main {
+    overflow-y:auto;
+    size:*;
+    border-spacing:6px;
+    padding:6px;
+}
+
+        </style>
+        <script>
+
+function VideoPlus() {
+   return <div.video>
+     <video.generator />
+     <footer>
+       <button>Test</button>
+     </footer>
+   </div> 
+}
+
+function Main() {
+   const list = [];
+   for(let n = 0; n < 100; ++n)
+     list.push(<VideoPlus/>);
+   return <main>{list}</main>;    
+}
+
+document.body.append(<Main/>);
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style></style>
+        <script>
+
+
+document.on("click", "button", function(){
+  let toastWindow = new Window({
+    type: Window.POPUP_WINDOW,
+    url: __DIR__ + "toast.htm"
+  });
+  toastWindow.show("Hello world");
+});
+
+
+
+        </script>
+    </head>
+    <body>
+
+      <button>Show Toast Window</button>
+
+    </body>
+</html>

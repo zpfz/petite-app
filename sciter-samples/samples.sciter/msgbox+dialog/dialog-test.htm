@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+html:disabled {
+    foreground-color:rgba(0,0,0,0.3);
+    transition: foreground-color linear 300ms;
+    //filter:blur(2px);
+}
+
+        </style>
+        <script>
+
+document.on("click","button#show", function() {
+
+  document.state.disabled = true;
+
+  var retval = Window.this.modal {
+    url: __DIR__ + "dialog.htm",
+    alignment:-8,
+  };
+
+  document.state.disabled = false;
+
+  console.log(JSON.stringify(retval));
+});
+
+        </script>
+    </head>
+    <body>
+
+<button #show>Show dialog</button>
+
+    </body>
+</html>

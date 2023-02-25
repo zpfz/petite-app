@@ -1,0 +1,69 @@
+<html window-frame="transparent">
+    <head>
+        <title>Toast</title>
+        <style>
+
+  html {
+    background: transparent;
+    size: max-content;
+    overflow:none;
+  }
+
+  body {
+    background: gold;
+    margin:20px;    
+    padding:20px;
+    border-radius:10px;
+    box-shadow:3px 3px 4px #000;
+    opacity:0;
+    size: max-content;
+    transform: translate(0,0); opacity:1.0;
+    font:system;
+    transition: transform quad-out 500ms, opacity linear 500ms;
+  }
+  
+  body[state] {visibility:visible;}
+  body[state=initial] { transform: translate(0,100%); opacity:0.0; } /* offstage */
+  body[state=shown]   { transform: translate(0,0);    opacity:1.0; }
+  body[state=closed]  { transform: translate(100%,0); opacity:0.0; transition: transform linear 500ms, opacity linear 500ms; }
+    
+  header { border-bottom: 1dip dashed gray; padding: 4dip; }
+  main { padding: 8dip; }
+
+        </style>
+        <script>
+
+    const body = document.body;
+
+    // method to use outside:
+    Window.this.show = function(message) {
+
+        const [screenX1,screenY1,screenX2,screenY2] = Window.this.screenBox("workarea", "rect" );
+
+        body.$("main").innerText = message;
+
+        // measure its real sizes
+        const [w,h] = body.state.box("dimension","margin","this",true/*as PPX*/);
+
+        // position its border box at bottom / right corner of the screen
+        Window.this.move( screenX2 - w, screenY2 - h);
+
+        body.attributes["state"] = "shown";
+
+        body.timer(5s, () => body.attributes["state"]="closed"); // hide it in 5 seconds
+    }
+
+    // set initial "off stage" state 
+    body.attributes["state"] = "initial";
+
+        </script>
+    </head>
+    <body state="initial">
+      <header>Hello</header>
+      <main></main>
+      <footer>
+        <button>Snooze</button>
+        <button>Dismiss</button>
+      </footer>
+    </body>
+</html>

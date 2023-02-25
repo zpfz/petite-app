@@ -1,0 +1,12 @@
+.resizable { 
+  aspect: Resizable url(resizable.js); 
+  foreground: no-repeat 100% 100%;
+  foreground-size: 12px;
+  foreground-image: url(path:M0 5 L5 0
+                             M2 5 L5 2
+                             M4 5 L5 4);
+  stroke: currentcolor;
+  stroke-width: 1px;
+
+}
+.resizable.mouse-on-corner { cursor: se-resize; }

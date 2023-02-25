@@ -1,0 +1,57 @@
+<html window-frame="solid-with-shadow"
+      window-width="max-content"
+      window-height="max-content">
+    <head>
+        <title>trayIconMenu</title>
+        <style>
+
+html {
+  overflow:hidden;
+}
+
+body {
+  margin:0;
+  font:system;
+}
+
+menu.popup {
+  visibility:visible;
+  display:block;
+  width:max-content;
+  height:max-content;
+  border:none;
+}
+
+        </style>
+        <script>
+
+document.on("ready", event => {
+  Window.this.state = Window.WINDOW_SHOWN;
+  Window.this.activate(true);
+});
+
+Window.this.on("activate", event => {
+  if(!event.reason)
+     Window.this.close();
+  return true;
+});
+
+document.on("click","li#exit", event => {
+  Window.this.parent.dispatchEvent(new Event("exit"),true);
+  Window.this.close();
+});
+
+document.on("click","li#reveal", event => {
+  Window.this.parent.dispatchEvent(new Event("reveal"),true);
+  Window.this.close();
+});
+
+        </script>
+    </head>
+    <body>
+      <menu.popup>
+        <li#reveal>Show window</li>
+        <li#exit>Exit</li>
+      </menu>
+    </body>
+</html>

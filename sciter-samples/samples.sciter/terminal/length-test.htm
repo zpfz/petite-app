@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+/*terminal {
+    size:*;
+}*/
+
+        </style>
+        <script>
+
+const terminalView = document.$("terminal").terminal;
+
+let counter = 0;
+
+document.on("click","#append", function(){
+  for(let n = 0; n < 10; ++n)
+    terminalView.write("line no  " + (++counter) + "\r\n" );
+});
+
+
+        </script>
+    </head>
+    <body>
+     <button#append>Append</button> 
+     <terminal />
+
+    </body>
+</html>

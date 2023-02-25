@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+body {
+    aspect: SelectionBox;
+}
+
+        </style>
+        <script>
+
+function SelectionBox() {
+
+    let x,y,w,h;
+
+    const paint = gfx => {
+        gfx.strokeStyle = "#000";
+        gfx.strokeWidth = 2;
+        gfx.strokeRect(x, y, w, h);
+    };
+
+    const move = event => {
+        w = event.x - x;
+        h = event.y - y;
+        this.requestPaint();
+        return true;
+    };
+
+    this.on("^mousedown", event => {
+      this.paintForeground = paint;
+      x = event.x;
+      y = event.y;
+      w = h = 0;
+      this.state.capture(true);
+
+      this.on("^mousemove",move);
+      this.requestPaint();
+
+      Window.this.doEvent("untilMouseUp");
+
+      this.paintForeground = null;
+      this.off(move);
+      this.state.capture();
+      this.requestPaint();      
+
+    });
+}
+
+        </script>
+    </head>
+    <body>
+
+Drag mouse over this
+
+    </body>
+</html>

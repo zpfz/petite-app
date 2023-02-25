@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style></style>
+        <script|module>
+
+import * as sys from "@sys";
+
+document.on("click","button#render", async function() {
+  const frame = document.$("frame");
+  const [w,h] = frame.state.box("dimension");
+  const image = new Graphics.Image(w,h,frame);
+  const bytes = image.toBytes("png");
+  try {
+    const file = await sys.fs.open(URL.toPath(__DIR__ + "frame.png"), "w");
+    await file.write(bytes);
+    await file.close();
+  } catch(e) {
+    console.log(e);
+  }
+});
+
+        </script>
+    </head>
+    <body>
+
+<button#render>Render this to image</button>
+
+<frame src="../css-flex/flow-vs-flexbox.htm" />
+
+    </body>
+</html>

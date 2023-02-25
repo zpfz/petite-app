@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style></style>
+        <script>
+
+         let currentAudio = null;
+
+          async function play() {
+            try {
+              if(currentAudio) await currentAudio.stop();
+              currentAudio = await Audio.load(__DIR__ + "/hasta-lavista-baby.mp3");
+              console.log("playing start");
+              await currentAudio.play();
+              console.log("playing stop");
+              currentAudio = null;
+            } catch (e) {
+              console.log(e);
+            }
+          }
+
+          document.on("click", "button#play", play);
+          document.on("click", "button#stop", async ()=>{ 
+            if(currentAudio) {
+                await currentAudio.stop();
+                currentAudio = null;
+            }
+          });
+
+        </script>
+    </head>
+    <body>
+
+       <button#play>Play</button>
+       <button#stop>Stop</button>
+
+    </body>
+</html>

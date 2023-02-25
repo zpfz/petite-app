@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+[selectable]:not(:focus) {
+  text-selection: currentcolor transparent;  
+}
+
+        </style>
+        <script></script>
+    </head>
+    <body>
+
+
+<p>Text below is explicitly selectable by @selectable</p>
+
+<div selectable>
+  <p>This area is selectable.</p>
+  <p>By explicitly defining attribute <code>selectable</code>.</p>
+</div>
+
+    </body>
+</html>

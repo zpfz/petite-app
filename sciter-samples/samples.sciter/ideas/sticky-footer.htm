@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+
+section {
+  size:*;
+  overflow-y:scroll-indicator;
+  border:2px solid;
+}
+
+footer {
+  margin-top:*;
+  padding:2em;
+  background:gold;
+}
+
+        </style>
+        <script>
+
+document.on("click", "#add", function() {
+
+  document.$("div").append(<p>Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>);
+
+});
+
+
+        </script>
+    </head>
+    <body>
+
+<button #add>Add content</button>
+
+
+<section>
+  <div>
+     <p>Some text to enable scrolling...</p>
+  </div>
+
+  <footer> 
+    Footer
+  </footer>
+
+</section>
+
+    </body>
+</html>

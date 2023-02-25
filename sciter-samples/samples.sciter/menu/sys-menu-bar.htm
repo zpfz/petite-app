@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+        </style>
+
+        <menu.window>
+           <li>File
+               <menu>
+                 <li.new>New File &hellip;</li>
+                 <li.open-file>Open File</li>
+                 <li.open-folder>Open Folder</li>
+                 <hr/>
+                 <li.exit>Exit</li>
+               </menu>  
+           </li>
+        </menu>
+
+        <script>
+          document.on("click","menu.window li", function(ev,li) {
+            document.body.append(<text>click on {li.toString()}</text>);
+          });
+        </script>
+
+    </head>
+    <body>
+    </body>
+</html>

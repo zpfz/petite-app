@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+html {
+  background:transparent;
+}
+          
+form {
+  flow: row(label,div);
+}          
+form > label  {
+  white-space: nowrap; 
+  width: max-content;
+}
+
+form > div {
+  width:*;
+}
+
+
+        </style>
+        <script type="module">
+
+document.on("change","form", (_,form) => {
+    const props = form.value;
+    Window.this.blurBehind = [props.ambience, props.tone, props.source].join(" ");
+    if(props.ambience == "dark")
+      document.attributes["theme"] = "dark";
+    else 
+      document.attributes["theme"] = "light";
+});
+
+        </script>
+    </head>
+    <body>
+
+<form>
+   <label>backdrop source</label>
+   <div>
+      <button|radio(source) value="source-windows" checked>Windows</button>    
+      <button|radio(source) value="source-desktop" >Desktop</button>
+   </div>
+   <label>backdrop tone</label>
+   <div>
+      <button|radio(tone) value="" checked>Normal</button>
+      <button|radio(tone) value="ultra">Ultra</button>
+   </div>
+   <label>ambience</label>
+   <div>
+      <button|radio(ambience) value="light" checked>Light</button>
+      <button|radio(ambience) value="dark">Dark</button>
+   </div>
+</form>
+
+
+    </body>
+</html>

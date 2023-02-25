@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "xo": "^0.48.0",
+    "eslint-plugin-html": "^6.2.0"
+  }
+}

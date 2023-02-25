@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style></style>
+        <script>
+
+          var audio;
+  
+          document.on("click", "button#play", async function(evt,btn) {
+            btn.state.disabled = true;
+
+            try {
+            audio = await Audio.load(__DIR__ + "/hasta-lavista-baby.mp3");
+            await audio.play();
+            } catch (e) {
+              console.log(e);
+            }
+
+            btn.state.disabled = false;
+          });
+
+          document.on("click", "button#stop", function(evt,btn) {
+            if (audio) {
+            audio.stop();
+            audio = null;
+            }
+          });
+
+        </script>
+    </head>
+    <body>
+
+       <button#play>Play</button>
+       <button#stop>Stop</button>
+
+    </body>
+</html>

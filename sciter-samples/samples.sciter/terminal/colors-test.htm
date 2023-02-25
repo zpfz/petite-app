@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+terminal {
+    size:*;
+}
+
+        </style>
+        <script|module>
+
+import {xt} from "xterm.js";
+
+const terminal = document.$("terminal").terminal;
+
+function writeln(...args) { 
+    terminal.write(args.join(" "));
+    terminal.write("\r\n");
+}
+
+writeln(xt.bold`back colors:`);
+
+writeln(xt.white`WHITE`, "text  color");
+writeln(xt.blue`BLUE`, "text  color");
+writeln(xt.green`GREEN`, "text  color");
+writeln(xt.cyan`CYAN`, "text  color");
+writeln(xt.red`RED`, "text  color");
+writeln(xt.magenta`MAGENTA`, "text  color");
+writeln(xt.yellow`YELLOW`, "text  color");
+writeln(xt.black`BLACK`, "text  color");
+
+writeln("");
+writeln(xt.bold`back colors:`);
+
+writeln(xt.dim.bg_white`WHITE`, "dim back color");
+writeln(xt.dim.bg_blue`BLUE`, "dim back color");
+writeln(xt.dim.bg_green`GREEN`, "dim back color");
+writeln(xt.dim.bg_cyan`CYAN`, "dim back color");
+writeln(xt.dim.bg_red`RED`, "dim back color");
+writeln(xt.dim.bg_magenta`MAGENTA`, "dim back color");
+writeln(xt.dim.bg_yellow`YELLOW`, "dim back color");
+writeln(xt.bg_black`BLACK`, "back color");
+
+writeln("");
+writeln(xt.bold`extras:`);
+
+writeln(xt.underline`underline`, "and", xt.strikethrough`strikethrough`, "and", xt.inverse`inverse` );
+
+
+        </script>
+    </head>
+    <body>
+
+     <h3>&lt;terminal&gt; element demo</h3>
+
+     <terminal rows="24" columns="80" />
+
+    </body>
+</html>

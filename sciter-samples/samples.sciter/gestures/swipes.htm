@@ -1,0 +1,201 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+list {
+  display:block;
+  flow:vertical;
+  size:*;
+  overflow-y: scroll-indicator;
+  border:1px solid;
+}
+
+list > li {
+   display:block;
+   margin:0;
+   overflow:hidden;
+   flow:horizontal;
+   horizontal-align:right;
+   height:max-content;
+}
+
+list > li[removing] {
+   height:0;
+   opacity:0.25;
+   transition: height ease 200ms, opacity linear 200ms;
+}
+
+list > li > .content {
+   padding:1em;
+   width:100%;
+   box-sizing: border-box;
+}
+
+list > li > .actions {
+   height:*;
+   width:max-content;
+   flow:horizontal;
+   border-spacing:3px;
+}
+
+list > li > .actions > b {
+  behavior:clickable;
+  display:block;
+  height:*;
+  width:0;
+  vertical-align: middle;
+  text-align:center;
+  font-weight:normal;
+  font-size:85%;
+  background:gold;
+  transition: width ease 200ms;
+  border-radius:3px;
+  overflow:hidden;
+}
+
+list > li > .actions > b > icon {
+  display:block; 
+  margin:0 *;
+  size:1.6em;
+}
+
+list > li:expanded > .actions > b {
+  width: 4em;
+}
+
+
+list > li > .actions > b.options {
+  background:#eee;   
+}
+
+list > li > .actions > b.delete {
+  background:red;
+  color:white;
+}
+
+        </style>
+        <script|module>
+
+class ListItem extends Element {
+
+  actionsShown = false;
+  kids;
+
+  constructor(props,kids) {
+    super();
+    this.kids = kids;
+  }
+
+  render() {
+    let actions = [];
+    let atts = {};
+    if(this.actionsShown) {
+       actions = <div.actions>
+        <b.options><icon|opts-h /><text>Options</text></b>
+        <b.flag><icon|flag /><text>Flag</text></b>
+        <b.delete><icon|delete /><text>Delete</text></b>
+       </div>;
+       atts.actions = true;
+    }
+    return <li {atts}>
+      <div.content>{this.kids}</div>
+      {actions}
+    </li>;
+  }
+
+  ["on click at .content"](evt) { 
+    this.triggerActions();
+  }
+
+  ["on ^gesture-start at :root"](evt) { 
+    this.state.wantsGestures("pan-horizontal"); // we want horzontal gestures in the item
+    //console.log("^gesture-start");
+  }
+  ["on ^gesture-pan at :root"](evt) { 
+    if(!this.actionsShown && evt.deltaX < 0) 
+      this.triggerActions();
+    else if(this.actionsShown && evt.deltaX > 0) 
+      this.triggerActions();
+    //return true;
+  }
+
+  triggerActions() {
+    if(this.actionsShown) {
+       this.state.expanded = false;
+       this.on("transitionend.actions", evt => {
+          // do this only after end of animated scroll
+          this.off("transitionend.actions");
+          this.actionsShown = false;
+          this.patch(this.render());
+       });
+
+   }
+    else {
+       this.parentElement.collapseExpandedItems();
+       this.actionsShown = true;
+       this.patch(this.render());
+       this.post(() => {this.state.expanded = true});
+    }
+  }
+
+  ["on click at b.delete"]() {
+    this.parentElement.removeItem(this);
+    return true;
+  }
+}
+
+class List extends Element {
+  list = [];
+  constructor(props) {
+    super();
+    this.list = props.list;
+  }
+
+  render() {
+    return <list>{
+      this.list.map(item => <ListItem key={item.key}>{item.text}</ListItem>)
+    }</list>;
+  }
+
+  collapseExpandedItems() {
+    for(const expanded of this.$$("li[actions]"))
+       expanded.triggerActions();
+  }
+
+  removeItem(li) {
+    const key = li.attributes["key"];
+    li.attributes["removing"] = true;
+    const index = this.list.findIndex(item => item.key == key);
+    li.on("transitionend", () => {
+      this.list.splice(index,1);
+      this.componentUpdate();
+    });
+  }
+
+  onscroll() {
+    this.collapseExpandedItems();
+  }
+
+}
+
+function Main() {
+  const list = [];
+  for(let n = 0; n < 100; ++n)
+    list.push({ 
+      key : n,
+      text: `pretty long item ${n} of great swipeable list`
+    });
+  return <List list={list} />;
+}
+
+document.body.append(<Main/>);
+
+        </script>
+    </head>
+    <body>
+      <h3>Swipe on touchpad in horizontal or vertical direction.</h3>
+      <h3>Or click by mouse on an item.</h3>
+
+    </body>
+</html>

@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+            table {
+              size:*;
+              border:1px solid #ccc;
+            }
+            tbody 
+            {
+              overflow:scroll-indicator;
+              size:*;
+              behavior:virtual-list;
+              prototype: VirtualTableBody;
+            }
+            table > thead { 
+               border-bottom:1px solid #ccc; 
+               behavior: column-resizer;
+             }
+            table > thead > tr > th:nth-child(1) { width: 16em; }
+            table > thead > tr > th:nth-child(2) { width: 8em; }
+            table > thead > tr > th:nth-child(3) { width: *; }
+
+            tbody > tr:current { background-color:color(highlight-nf); color:color(highlight-text); }
+            tbody:focus > tr:current { background-color:color(highlight-focus); }
+
+            tbody > tr:hover { background-color:color(highlight-hover); }
+
+        </style>
+        <script type="module">
+
+import {VirtualSelect} from "virtual-select.js";
+
+let list = []; // data to render
+
+for (let n = 0; n < 1000; ++n)
+    list.push({key: n, text: `test # ${n}`, date: new Date().toLocaleString()});
+
+
+// select with virtual data source
+class VirtualTableBody extends VirtualSelect {
+
+    componentDidMount() {
+       this.list = list;
+       this.vlist.navigateTo("start");
+    }
+
+    itemAt(at) {
+        return this.list[at];
+    }
+
+    totalItems() {
+        return this.list.length;
+    }
+
+    indexOf(item) {
+        return this.list.indexOf(item);
+    }
+
+    // overridable
+    renderItem(item, isCurrent, isSelected) {
+        return <tr key={item.key} state-current={isCurrent} state-checked={isSelected}>
+            <td>{item.date}</td>
+            <td>{item.key}</td>
+            <td>{item.text}</td>
+        </tr>;
+    }
+
+    renderList(items) // overridable
+    {
+        return <tbody>{ items }</tbody>;
+    }
+}
+
+// So CSS will be able to find it in global namespace
+globalThis.VirtualTableBody = VirtualTableBody; 
+
+        </script>
+    </head>
+
+<body>
+
+    This demonstrates use of virtual list as a component attached to DOM by CSS
+
+    <table>
+        <thead>
+            <tr>
+                <th>aaa</th>
+                <th>bbb</th>
+                <th>ccc</th>
+            </tr>
+        </thead>
+        <tbody />
+    </table>
+
+</body>
+</html>

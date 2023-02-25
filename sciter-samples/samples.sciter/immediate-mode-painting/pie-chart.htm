@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+    pie-chart {
+      display:block;
+      prototype: Pie; // and its params:
+        var(band-width):20px;
+        var(band-color):rgb(230,230,230);
+        var(sector-color):rgb(100,150,200);
+      size:200px;
+      font-size:30px;
+      vertical-align:middle;
+      text-align:center;
+
+    }
+    
+    </style>
+    <script>
+    
+      class Pie extends Element {
+        #value = 0; 
+        strokeWidth;
+        circleColor;
+        strokeColor;
+        startAngle = -90deg;
+
+        componentDidMount() {
+          this.strokeWidth = this.style.variable("band-width") || 10px; 
+          this.circleColor = this.style.variable("band-color") || Color.RGB(230,230,230); 
+          this.strokeColor = this.style.variable("sector-color") || Color.RGB(100,0,0); 
+          this.paintBackground = this.paint;
+          this.value = 1.0 * this.attributes["value"];
+        }
+
+        paint(gfx) 
+        {
+          let [w,h] = this.state.box("dimension"); 
+          let x = w/2, y = h/2;  
+          let r = Math.min(w,h) / 2 - this.strokeWidth / 2;  
+          
+          gfx.strokeWidth = this.strokeWidth;
+          gfx.strokeStyle = this.circleColor;
+          gfx.beginPath();
+          gfx.arc(x,y,r,0, 360deg);
+          gfx.stroke();
+          gfx.beginPath();
+          gfx.strokeStyle = this.strokeColor;
+          gfx.arc(x,y,r,this.startAngle, this.startAngle + 360deg * this.#value);
+          gfx.stroke();
+        }  
+  
+        // redefining property 'value' on that element
+        get value() { return this.#value; }
+        set value(v) {
+          this.#value = v;
+          this.innerText = printf("%d%%", this.#value * 100);
+          this.requestPaint();
+        }
+      }
+
+          
+      document.on("change","input",function(e,input) {
+        document.$("pie-chart").value = input.value;
+      });
+      
+    
+    </script>
+  </head>
+<body>
+
+  value: <input|hslider min="0.0" max="1.0" value="0.25" />
+
+  <pie-chart value="0.25" />
+
+</body>
+</html>

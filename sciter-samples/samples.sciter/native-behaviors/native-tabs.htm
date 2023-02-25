@@ -1,0 +1,204 @@
+<html>
+<head><style>
+
+
+
+tabs 
+{
+  font:system;
+  behavior: tabs; // include/behaviors/behavior-tabs.h
+  size:*;
+  //overflow:hidden;
+  display:block;
+  flow:vertical;
+}
+
+tabs > strip /* the tab strip */
+{
+  display: block;
+  flow: horizontal;
+  margin-bottom:-1px;
+  padding: 2px 2px 0 2px;
+}
+
+tabs > strip > label /* all tab labels, passive by default */
+{
+  display:block;
+  padding: 3px 8px;
+  margin-bottom:1px;
+  height:*;
+  max-width: auto; /* not wider than max-intrinsic  */
+}
+tabs > strip > label:hover /* passive tab */
+{
+  color: highlight;
+}
+tabs > strip > label:current /*active tab*/
+{
+  margin:-2px -2px -1px -2px;
+  padding: 4px 10px 5px 10px; 
+  position:relative;
+}
+
+tabs:tab-focus > strip > label:current  {
+  outline: 1px dotted -4px;
+}
+
+tabs:tab-focus > strip > label:current > * /* outline active tab content if we've gotten focus by tab*/
+{
+  outline: 1px dotted #fff;
+}
+
+/* containers of tabs */
+tabs > panels {
+  display: block;
+  size:*; /* takes all available space */
+  flow:vertical;
+}
+
+/* tab containers, MUST have 'name' attribute defined */
+tabs > panels > * { visibility:none; }
+
+tabs > panels > *:expanded 
+{ 
+  padding:4px;
+  visibility:visible; 
+  height:*;
+}
+
+
+tabs > strip > label /* all tab labels, passive by default */
+{
+  background: #f0f0f0;
+  color: #000;
+  border:1px solid #ABADB3;
+  //border-radius: 3px 3px 0 0;
+  border-bottom:none;
+  margin-left:-1px;
+}
+tabs > strip > label:hover /* passive tab */
+{
+  background: @THREEDHOVER;
+  color: @HIGHLIGHT;
+}
+tabs > strip > label:current /*active tab*/
+{
+  background: #fff;
+  margin:-2px -2px 0px -2px;
+}
+
+tabs > panels > *:expanded 
+{ 
+  background: #fff;
+  border:1px solid #ABADB3;
+  box-shadow: 2px 2px 2px #BFBFBF;
+}
+
+
+/* tabs at bottom */
+
+tabs.bottom {
+  flow: grid(2,
+             1);
+}
+
+tabs.bottom > strip
+{
+  margin-bottom:0px;
+  padding: -1px 2px 4px 2px;
+  /*background-color: threedface threedface window window;*/
+  border-top:1px solid threedshadow;
+}
+
+tabs.bottom > panels > [name]:expanded /* current, presented tab */
+{ 
+  background:window;
+  padding:4px;
+  display:block; 
+  height:*;
+  border-top:1px solid threedshadow;
+  border-left:1px solid threedshadow;
+  border-right:1px solid threedshadow;
+}
+
+tabs.bottom > strip > label /* all tabs, passive by default */
+{
+  padding: 3px 8px;
+  height:*;
+  max-width: auto; /* not wider than max-intrinsic  */
+  background-image:none;
+  border: 1px solid transparent;
+  //border-radius: 0 0 3px 3px;
+}
+tabs.bottom > strip > label:hover /* passive tab */
+{
+  background-image:none;
+}
+
+tabs.bottom > strip > label:current  /*active tab*/
+{
+  background-image:none;
+  background-color:window;
+  margin:-2px -2px -1px -2px;
+  padding: 4px 10px 5px 10px; 
+  position:relative;
+  border: 1px solid threedshadow;
+  border-top: 1px solid transparent;
+}
+tabs.bottom > strip > label:current:hover /*active tab*/
+{
+  background-image:none;
+}
+
+
+
+
+
+</style>
+
+
+</head>
+
+<body>
+   <div class="tabs" #test>
+      <div class="strip" role="page-tab-list"> <!-- our tab strip, can be placed on any side of tab container. -->
+         <div panel="panel-id1" selected role="page-tab">tab1 caption</div>
+         <div panel="panel-id2" role="page-tab">tab2 caption</div>
+         <div panel="panel-id3" role="page-tab">tab3 caption</div>         
+      </div>
+      <div id="panel-id1"> first panel content 
+      <select name="country">
+        <OPTION VALUE=1 >Afghanistan</OPTION>
+        <OPTION VALUE=2 >Albania</OPTION>
+        <OPTION VALUE=3 >Algeria</OPTION>
+        <OPTION VALUE=4 >American Samoa</OPTION>
+      </select> 
+      </div>
+      <div id="panel-id2"> second panel content <button>Test1</button> </div>
+      <div id="panel-id3"> third panel content </div>      
+   </div>
+   <p>light version of the tab:</p>
+   <div class="tabs" id="second">
+      <div class="strip"> <!-- our tab strip, can be placed on any side of tab container. -->
+         <div panel="panel-id1" selected>tab1 caption</div>
+         <div panel="panel-id2">tab2 caption</div>
+         <div panel="panel-id3">tab3 caption</div>         
+      </div>
+      <div name="panel-id1" selected> first panel content </div>
+      <div name="panel-id2" > second panel content </div>
+      <div name="panel-id3" > third panel content <img src="sres:busy.png"> </div>      
+   </div>
+   <p>tabs on bottom:</p>
+   <div class="tabs" id="third">
+      <div name="panel-id1" selected> first panel content </div>
+      <div name="panel-id2" > second panel content </div>
+      <div name="panel-id3" > third panel content <img #test src="sres:busy.png"> </div>      
+      <div class="strip"> <!-- our tab strip, can be placed on any side of tab container. -->
+         <div panel="panel-id1" selected>tab1 caption</div>
+         <div panel="panel-id2">tab2 caption</div>
+         <div panel="panel-id3">tab3 caption</div>         
+      </div>
+   </div>
+   
+</body>   
+</html>   

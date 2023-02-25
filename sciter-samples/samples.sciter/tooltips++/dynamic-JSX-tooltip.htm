@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      div.dyn-tip { 
+        aspect: DynTip;
+        width:max-content;
+        border:1px solid;
+      }
+
+      popup.dyn-tip {
+        padding: 0.5em 1em;
+      }
+    
+    </style>
+    <script>
+    
+      function DynTip() {
+
+        let counter = 0;
+      
+        function provideTip(evt) {
+          evt.source = Element.create(<popup.dyn-tip role="tooltip">Tip <b>#{++counter}</b></popup>);
+          return true;
+        }
+      
+        this.on("tooltiprequest",provideTip);
+      }
+    
+    </script>
+  </head>
+<body>
+
+  <div.dyn-tip>Hover me</div>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style></style>
+        <script>
+
+          document.on("click", "button#play", async function(evt,btn) {
+              var audio;
+
+              try {
+                audio = await Audio.load(__DIR__ + "/hasta-lavista-baby.mp3");
+
+              audio.play();
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+              audio.pause();
+              await new Promise((resolve) => setTimeout(resolve, 1000));
+              audio.resume();
+              } catch (e) {
+                console.log(e);
+              }
+            });
+
+        </script>
+    </head>
+    <body>
+
+       <button#play>Play</button>
+
+    </body>
+</html>

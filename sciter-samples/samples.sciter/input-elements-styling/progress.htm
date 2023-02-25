@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Test</title>
+        <style>
+
+progress.custom {
+  appearance:none;  
+  background-color:gold;
+}
+
+progress.custom::marker {
+  background-color:red;  // that bar color
+}
+
+        </style>
+        <script></script>
+    </head>
+    <body>
+
+      <p>default styling: <progress value="0.5" /></p>
+      <p>custom styling: <progress.custom value="0.5" /></p>
+
+    </body>
+</html>

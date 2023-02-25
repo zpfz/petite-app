@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+    
+      section { display:block; flow:horizontal; width:max-content; border-spacing:6dip; padding:6dip;  }
+      section > div { size: 64dip; background:#eee; }
+      
+      toolbar#positioning > button#at-bottom > popup[role="tooltip"] {
+        popup-position: at-bottom; /* like popup menu from menu bar */
+      }
+      
+      popup {
+        aspect: Calltip(color:#00f, 
+                        arrowsize:10dip, 
+                        radius:10dip);
+        color: #fff;
+        background-color:transparent;
+        width:128dip;
+        padding:20dip 10dip 10dip 10dip;
+        text-align:center;
+      }
+    
+    </style>
+    <script>
+    
+    
+    function Calltip(params) {
+           
+      this.paintBackground = function(gfx) {
+        const [width,height] = this.state.box("dimension", "border");
+        const [loff,toff,roff,boff] = this.state.box("rect", "border", "inner");
+        const asz = params.arrowsize || 10px;
+        const rad = params.radius || 10px;
+        
+        gfx.translate(-loff,-toff);
+        gfx.fillStyle = params.color || Color.RGB(0,0,255); 
+
+        gfx.beginPath();
+        gfx.rect(0,asz,width,height-asz,rad);
+        gfx.moveTo(rad,asz);
+        gfx.lineTo(rad + asz,0);
+        gfx.lineTo(rad + asz + asz,asz);
+        gfx.closePath();
+        
+        gfx.fill();
+        return true;
+      }
+    }
+    
+    
+    </script>
+    
+    <popup#lorem-ipsum-1>
+      This call tip uses custom background (shape) rendering.
+    </popup>
+
+    
+  </head>
+<body>
+  <p>Custom Callout shape:</p>
+  <section>
+    <div titleid="lorem-ipsum-1">hover me</div>
+  </section>
+
+</body>
+</html>

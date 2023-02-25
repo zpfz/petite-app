@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Tooltip manager</title>
+    <style>
+    
+      popup[role=tooltip] { prototype: Tooltip; }
+    
+    </style>
+    <script>
+    
+
+    class Tooltip extends Element {
+
+      componentDidMount() { 
+        this.timer(1s, ()=>{ this.state.popup = false; });
+      }
+    }    
+    
+    </script>
+  </head>
+<body>
+
+Tooltip will be dropped in one second.
+
+<div title="Woohoo!">
+  HOVER ME!
+</div>
+
+</body>
+</html>
